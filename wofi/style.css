@@ -1,0 +1,42 @@
+window {
+    margin: 10px;
+    border: 2px solid #458588;
+    border-radius: 8px;
+    background-color: rgba(40, 40, 40, 0.9);
+    font-family: "JetBrainsMono NL Nerd Font Mono", monospace;
+    font-size: 16px;
+}
+
+#input {
+    margin: 10px;
+    background-color: rgba(40, 40, 40, 0.8);
+    font-family: "JetBrainsMono NL Nerd Font Mono", monospace;
+}
+
+#inner-box {
+    margin: 10px;
+}
+
+#outer-box {
+    margin: 10px;
+}
+
+#entry {
+    padding: 8px 12px;
+    margin: 2px;
+    min-width: 220px;
+    min-height: 44px;
+    border-radius: 4px;
+    font-family: "JetBrainsMono NL Nerd Font Mono", monospace;
+    font-size: 16px;
+}
+
+#entry:selected{
+    background-color: #458588;
+}
+
+#entry image {
+    margin-right: 12px;
+    min-width: 24px;
+    min-height: 24px;
+}

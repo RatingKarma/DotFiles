@@ -1,0 +1,7 @@
+show=drun
+mode=drun
+width=600
+columns=2
+allow_images=true
+image_size=24
+prompt=Run...
