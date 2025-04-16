@@ -1,11 +1,23 @@
 default-timeout=5000
-background-color=#303446
+background-color=#2e34407f
 text-color=#c6d0f5
-border-color=#babbf1
-progress-color=over #414559
-anchor=top-right
-font=JetBrainsMono Nerd Font 16
+width=450
+height=300
+border-color=#99c0d0
+border-size=3
+border-radius=12
+anchor=top-center
+margin=12
+padding=12,20
+font=JetBrainsMono Nerd Font 14
 
-[urgency=high]
-border-color=#ef9f76
-timeout=0
+[urgency=low]
+border-color=#cccccc
+
+[urgency=normal]
+border-color=#99c0d0
+
+[urgency=critical]
+border-color=#bf616a
+default-timeout=0
+
