@@ -18,6 +18,43 @@ require("lazy").setup({
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
     {
+        "xiyaowong/transparent.nvim",
+        opts = {
+            groups = {
+                "Normal",
+                "NormalNC",
+                "Comment",
+                "Constant",
+                "Special",
+                "Identifier",
+                "Statement",
+                "PreProc",
+                "Type",
+                "Underlined",
+                "Todo",
+                "String",
+                "Function",
+                "Conditional",
+                "Repeat",
+                "Operator",
+                "Structure",
+                "LineNr",
+                "NonText",
+                "SignColumn",
+                "CursorLine",
+                "CursorLineNr",
+                "StatusLine",
+                "StatusLineNC",
+                "EndOfBuffer",
+            },
+            extra_groups = {},
+            exclude_groups = {},
+        },
+        config = function(_, opts)
+            require("transparent").setup(opts)
+        end,
+    },
+    {
         "saghen/blink.cmp",
         -- optional: provides snippets for the snippet source
         dependencies = { "rafamadriz/friendly-snippets" },
