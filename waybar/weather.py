@@ -1,14 +1,21 @@
 import jwt
 import json
-import time
+import re
 import requests
+import time
 import textwrap
 
-city = 'ningbo'
-location = 'yinzhou'
+city = '宁波'
+location = '鄞州'
 api_host = 'https://pp4ewpuqme.re.qweatherapi.com'
 
 
+def get_location_by_ip():
+    res = requests.get('http://myip.ipip.net', timeout=5).text
+    location_match = re.search(r'来自于：(.+?)  ', res).group(1)
+    city, location = location_match.replace('中国 ', '').split(' ')
+    return city, location
+    
 def get_encode_jwt() -> str:
     private_key = '-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIHJZIl8cHpdYG+5IBCJQMEiQal8HcLsYd5ymInTPPP5n\n-----END PRIVATE KEY-----'
     payload = {
@@ -76,6 +83,25 @@ def get_warnings(latitude, longitude):
     return warnings
 
 
+def get_weather_icon(weather_text: str):
+    if weather_text.find('晴') != -1:
+        return ''
+    if weather_text.find('阴') != -1:
+        return ''
+    if weather_text.find('云') != -1:
+        return ''
+    if weather_text.find('雷') != -1:
+        return '󱐋'
+    if weather_text.find('雪') != -1:
+        return ''
+    if weather_text.find('雨') != -1:
+        return ''
+    if weather_text.find('风') != -1:
+        return '󰖝'
+    if weather_text.find('雾') != -1:
+        return '󰖑'
+
+
 def parse_warning_info(warning_json):
     type_name = warning_json['typeName']
     warning_severity = warning_json['severity']
@@ -108,7 +134,7 @@ try:
     tips_text += textwrap.fill(f' {today_tips['text']}', width=15)
     
     output = {
-        'text': f' {weather_text} {temp}℃',
+        'text': f'{get_weather_icon(weather_text)} {weather_text} {temp}℃',
         'tooltip': tips_text,
     }
     print(json.dumps(output))

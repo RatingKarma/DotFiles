@@ -13,7 +13,7 @@ window#waybar {
 }
 
 window#waybar.hidden {
-    opacity: 0.5;
+    opacity: 1.0;
 }
 
 #workspaces {
@@ -60,12 +60,12 @@ window#waybar.hidden {
 #wireplumber,
 #network,
 #clock,
-#mpd,
+#keyboard-state,
 #tray {
     border-radius: 4px;
     margin: 6px 3px;
     padding: 6px 12px;
-    background-color: #7f7f7f;
+    background-color: #80ae44;
     color: #181825;
 }
 
@@ -85,7 +85,7 @@ window#waybar.hidden {
 }
 
 #cpu {
-    background-color: #00994c;
+    background-color: #96f6f0;
 }
 
 #memory {
@@ -124,8 +124,8 @@ window#waybar.hidden {
     background-color: #cba6f7;
 }
 
-#mpd {
-    background-color: #80ae44;
+#keyboard-state {
+    background-color: #181825;
 }
 
 #custom-power {
@@ -137,7 +137,7 @@ window#waybar.hidden {
 }
 
 tooltip {
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 5px;
     background-color: #131822;
 }

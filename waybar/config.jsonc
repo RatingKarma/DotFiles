@@ -12,14 +12,15 @@
 
     ],
     "modules-center": [
+        "clock"
     ],
     "modules-right": [
+        "keyboard-state",
         "tray",
         "network",
         "wireplumber",
         "backlight",
         "battery",
-        "clock",
         "custom/power"
     ],
     "wlr/taskbar": {
@@ -60,15 +61,28 @@
         "format": " {usage:>2}%"
     },
     "memory": {
-        "interval": 30,
-        "format": " {percentage:>2}% 󰾴 {swapPercentage:>2}%"
+        "interval": 10,
+        "format": " {percentage:>2}%"
+    },
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": {
+            "numlock": "N {icon} ",
+            "capslock": "C {icon} "
+        },
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
     },
     "tray": {
-        "spacing": 15
+        "icon-size": 20,
+        "spacing": 10
     },
     "clock": {
-        "format-alt": "  {:%m/%d %a}",
         "format": "  {:%H:%M}",
+        "format-alt": "  {:%m/%d %a}",
         "tooltip-format": "<span size='12pt' font='Microsoft YaHei Consolas'>{calendar}</span>",
         "calendar": {
             "mode": "month",
@@ -92,30 +106,11 @@
             "on-scroll-down": "shift_up"
         }
     },
-    "mpd": {
-        "format": "<span foreground='#a6e3a1'></span> {artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
-        "format-disconnected": "<span foreground='#f38ba8'></span>",
-        "format-paused": "<span foreground='#f9e2af'></span> {artist} - {title}",
-        "format-stopped": "<span foreground='#f9e2af'></span> Stopped",
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": " {artist} - {title}\n󰗮 {album}\n󰥔 {elapsedTime:%M:%S}/{totalTime:%M:%S}\n󰕾 {volume}%",
-        "on-click": "mpc toggle",
-        "on-click-right": "playerctl --player=mpd stop",
-        "on-click-middle": "mpc prev",
-        "on-scroll-up": "mpc volume +5",
-        "on-scroll-down": "mpc volume -5",
-        "interval": 2,
-        "max-length": 40,
-        "rotate": 0,
-        "smooth-scrolling-threshold": 0
-    },
     "network": {
-        "format-wifi" : "󱚻 {essid} 󰕒 {bandwidthUpBytes:<6}󰇚 {bandwidthDownBytes:<6}",
+        "format-wifi" : "󱚻 {essid}",
         "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"],
         "format-ethernet": "󰈀 {ifname} 󰕒 {bandwidthUpBytes} 󰇚 {bandwidthDownBytes}",
+        "format-alt": "󰕒 {bandwidthUpBytes} 󰇚 {bandwidthDownBytes}",
         "format-disconnected" : "󰖪 Disconnected",
         "tooltip-format": "󰛳 Interface: <b>{ifname}</b>\n󰩟 IP: <b>{ipaddr}/{cidr}</b>\n󰍸 Netmask: <b>{netmask}</b>\n󱂇 Gateway: <b>{gwaddr}</b>",
         "interval": 5,
@@ -125,7 +120,7 @@
         "format": "{icon} {volume}%",
         "format-bluetooth": "󰂰",
         "nospacing": 1,
-        "format-muted": "󰝟",
+        "format-muted": "󰝟 0%",
         "format-icons": {
             "headphone": "",
             "default": ["󰖀","󰕾",""]
@@ -149,7 +144,7 @@
         "on-click": "wofi"
     },
     "battery": {
-        "format": "{capacity}% {icon}",
+        "format": "{icon} {capacity}%",
         "format-icons": {
             "charging": [
                 "󰢜",

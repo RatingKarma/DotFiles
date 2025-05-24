@@ -1,10 +1,10 @@
 default-timeout=5000
-background-color=#2e34407f
+background-color=#2e3440
 text-color=#c6d0f5
 width=450
 height=300
 border-color=#99c0d0
-border-size=3
+border-size=1
 border-radius=12
 anchor=top-center
 margin=12
