@@ -47,4 +47,4 @@ if __name__ == '__main__':
     # Match config directory name in `dir_names`
     for arg in args:
         if arg in dir_names:
-            copy_to_config(os.path.join(cur_path, arg))
+            copy_to_config(arg)
