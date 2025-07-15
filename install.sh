@@ -3,6 +3,26 @@
 # User `.config` directory absolute path
 TARGET_CONFIG_DIR="${HOME}/.config"
 
+# Copy `zsh` and `zim` config files
+function copy_zsh_config(){
+    if [[ -d "${HOME}/.zim" ]]; then
+        rm -rf "${HOME}/.zim"
+    fi
+
+    # Install zim
+    echo "Install zim..."
+    curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
+
+    # Copy config files
+    echo "Copy zsh config files"
+    cp zsh/.zshrc "${HOME}"
+    cp zsh/.zimrc "${HOME}"
+
+    # Restart zsh
+    exec zsh
+    echo "Success: Copied zsh config files to ${HOME}/.zshrc"
+}
+
 # Check `.config` path
 if [ ! -d "${TARGET_CONFIG_DIR}" ]; then
     mkdir -p "${TARGET_CONFIG_DIR}"
@@ -22,6 +42,11 @@ done
 
 # Process each user-input arguments
 for user_input in "$@"; do
+    if [[ $user_input == "zsh" ]]; then
+        copy_zsh_config
+        continue
+    fi
+
     directory_found=false
     
     # Check if user input matches an existing directory
