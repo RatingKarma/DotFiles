@@ -44,6 +44,7 @@ done
 for user_input in "$@"; do
     if [[ $user_input == "zsh" ]]; then
         copy_zsh_config
+        chsh -s /bin/zsh    # Change default shell to `zsh`
         continue
     fi
 
