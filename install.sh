@@ -19,6 +19,7 @@ function copy_zsh_config(){
     cp zsh/.zimrc "${HOME}"
 
     # Restart zsh
+    chsh -s /bin/zsh    # Change default shell to `zsh`
     exec zsh
     echo "Success: Copied zsh config files to ${HOME}/.zshrc"
 }
@@ -44,7 +45,6 @@ done
 for user_input in "$@"; do
     if [[ $user_input == "zsh" ]]; then
         copy_zsh_config
-        chsh -s /bin/zsh    # Change default shell to `zsh`
         continue
     fi
 
