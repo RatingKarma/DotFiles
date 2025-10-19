@@ -10,7 +10,7 @@ require('mason').setup({
 
 require('mason-lspconfig').setup({
     -- A list of servers to automatically install if they're not already installed
-    ensure_installed = { 'pylsp', 'lua_ls', 'clangd' },
+    ensure_installed = { 'pylsp', 'lua_ls', 'clangd', 'neocmake' },
 })
 
 local lspconfig = require('lspconfig')
@@ -62,6 +62,6 @@ lspconfig.clangd.setup({
     on_attach = on_attach,
 })
 
-lspconfig.cmake.setup({
+lspconfig.neocmake.setup({
     on_attach = on_attach,
 })
