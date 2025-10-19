@@ -136,6 +136,25 @@ require("lazy").setup({
         },
         opts_extend = { "sources.default" },
     },
+    {
+        "stevearc/conform.nvim",
+        opts = {
+            formatters_by_ft = {
+                ["c"] = { "clang_format" },
+                ["cpp"] = { "clang_format" },
+                ["c++"] = { "clang_format" },
+            },
+            formatters = {
+                --clang-format = {
+                    -- prepend_args = {"-style={BasedOnStyle: WebKit, IndentWidth: 4}"},
+                --},
+            },
+            format_on_save = {
+                lsp_format = "fallback",
+                timeout_ms = 500,
+            },
+        },
+    },
     { 
         "kyazdani42/nvim-tree.lua",
         event = "VimEnter", 
