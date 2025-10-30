@@ -15,6 +15,11 @@
             "symbol": "circle"
         },
         {
+            "key": "│  PROMPT  │",
+            "type": "title",
+            "format": "{user-name}@{host-name}"
+        },
+        {
             "key": "│ {icon} DISTRO  │",
             "type": "os"
         },
