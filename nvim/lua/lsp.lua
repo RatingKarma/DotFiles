@@ -10,22 +10,26 @@ require('mason').setup({
 
 require('mason-lspconfig').setup({
     -- A list of servers to automatically install if they're not already installed
-    ensure_installed = { 'pylsp', 'lua_ls', 'clangd', 'neocmake' },
+    ensure_installed = { 'pylsp', 'lua_ls', 'clangd', 'cmake' },
 })
 
 -- Customized on_attach function
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set("n", "[d", function()
+    vim.diagnostic.jump({ count = -1, float = true })
+end, opts)
+vim.keymap.set("n", "]d", function()
+    vim.diagnostic.jump({ count = 1, float = true })
+end, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -49,25 +53,43 @@ local on_attach = function(client, bufnr)
 end
 
 -- Configure each language
--- How to add LSP for a specific language?
--- 1. use `:Mason` to install corresponding LSP
--- 2. add configuration below
-
-vim.lsp.config("pylsp", {
-    on_attach = on_attach
-})
-
-vim.lsp.enable("pylsp")
-
-
 vim.lsp.config("clangd", {
     on_attach = on_attach
 })
 
 vim.lsp.enable("clangd")
 
-vim.lsp.config("neocmake", {
+vim.lsp.config("lua_ls", {
+    on_attach = on_attach,
+    settings = {
+        Lua = {
+            runtime = {
+                version = "LuaJIT",
+            },
+            diagnostics = {
+                globals = { "vim" },
+            },
+            workspace = {
+                checkThirdParty = false,
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
+})
+
+vim.lsp.enable("lua_ls")
+
+vim.lsp.config("cmake", {
     on_attach = on_attach
 })
 
-vim.lsp.enable("neocmake")
+vim.lsp.enable("cmake")
+
+vim.lsp.config("pylsp", {
+    on_attach = on_attach
+})
+
+vim.lsp.enable("pylsp")
