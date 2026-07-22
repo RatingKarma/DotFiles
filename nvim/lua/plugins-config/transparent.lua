@@ -28,5 +28,15 @@ return {
             "StatusLineNC",
             "EndOfBuffer",
         },
+        extra_groups = {
+            -- nvim-tree transparentness
+            "NvimTreeNormal",
+            "NvimTreeNormalNC",
+            "NvimTreeEndOfBuffer",
+            "NvimTreeWinSeparator",
+            "NvimTreeVertSplit",
+            "NvimTreeStatusLine",
+            "NvimTreeStatusLineNC",
+        },
     },
 }
